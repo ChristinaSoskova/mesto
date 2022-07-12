@@ -1,0 +1,13 @@
+.profile {
+    margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+@media all and (max-width: 675px) {
+    .profile {
+        flex-direction: column;
+        margin-top: 26px;
+    }
+}

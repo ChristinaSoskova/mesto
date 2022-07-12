@@ -1,0 +1,24 @@
+.profile-intro__add-button {
+    width: 150px;
+    height: 50px;
+    margin-left: auto;
+    margin-top: 35px;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px rgba(255, 255, 255, 1) solid;
+    background-image: url(../../../images/plus.png);
+}
+
+.profile-intro__add-button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+@media all and (min-width: 320px) and (max-width: 900px) {
+    .profile-intro__add-button {
+        margin-left: auto;
+        margin-right: auto;
+        width: 282px;
+    } 
+}
