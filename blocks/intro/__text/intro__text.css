@@ -1,9 +1,9 @@
-.profile-intro__text {
+.intro__text {
     margin-right: 18px;
 }
 
 @media all and (max-width:650px) {
-    .profile-intro__text {
+    .intro__text {
         margin-right: 10px;
         display: flex;
         flex-direction: column;

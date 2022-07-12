@@ -1,4 +1,4 @@
-.profile-intro__text-title {
+.intro__title {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 500;
@@ -13,7 +13,7 @@
 }
 
 @media all and (max-width:425px) {
-    .profile-intro__text-title {
+    .intro__title {
         font-size: 27px;
         text-align: center;
     }
