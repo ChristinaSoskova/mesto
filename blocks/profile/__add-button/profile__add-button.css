@@ -1,4 +1,4 @@
-.intro__add-button {
+.profile__add-button {
     width: 150px;
     height: 50px;
     margin-left: auto;
@@ -10,13 +10,13 @@
     background-image: url(../../../images/plus.png);
 }
 
-.intro__add-button:hover {
+.profile__add-button:hover {
     cursor: pointer;
     opacity: 0.6;
 }
 
 @media all and (min-width: 320px) and (max-width: 900px) {
-    .intro__add-button {
+    .profile__add-button {
         margin-left: auto;
         margin-right: auto;
         width: 282px;
