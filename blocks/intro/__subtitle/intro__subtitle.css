@@ -3,9 +3,8 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 1.2;
-    border: 4px;
     margin-top: 0;
-    max-width: 336px;
+    max-width: 294px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -15,5 +14,6 @@
 @media all and (max-width:425px) {
     .intro__subtitle {
         font-size: 14px;
+        max-width: 255px;
     }
 }

@@ -1,5 +1,6 @@
 .popup__save-button {
     background-image: url(../../../images/Submit-button.png);
+    background-size: cover;
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,9 +11,6 @@
     border-radius: 5px;
     margin-top: 48px;
     margin-left: 36px;
-}
-
-.popup__save-button:hover {
     cursor: pointer;
 }
 

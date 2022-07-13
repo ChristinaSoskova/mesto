@@ -21,9 +21,9 @@
                     <h1 class="intro__title">Жак-Ив Кусто</h1>
                     <p class="intro__subtitle">Исследователь океана</p>
                 </div>
-                <button class="intro__edit-button"></button>
+                <button type="button" class="intro__edit-button"></button>
             </div>
-            <button class="profile__add-button"></button>
+            <button type="button" class="profile__add-button"></button>
         </section>
         <section class="elements">
             <ul class="elements__container">
@@ -71,22 +71,25 @@
                 </li>
             </ul>
         </section>
-        <div class="popup">
-            <form class="popup__container" action="index.html">
-                <button class="popup__icon"></button>
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <div class="popup__text">
-                    <input type="text" class="popup__point user-name" name="fullname" placeholder="Ваше имя">
-                    <input type="text" class="popup__point job" name="profession" placeholder="Ваша профессия">
-                </div>
-                <button class="popup__save-button" type="submit"></button>
-            </form>
-        </div>
     </main>
     <footer class="footer">
         <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
-    <script src="./script.js"></script>
+    <div class="popup">
+        <div class="popup__container">
+            <button type="button" class="popup__icon"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__form">
+                <div class="popup__text">
+                    <input type="text" class="popup__point-name popup__point" name="fullname" placeholder="Ваше имя">
+                    <input type="text" class="popup__point-job popup__point" name="profession"
+                        placeholder="Ваша профессия">
+                </div>
+                <button class="popup__save-button" type="submit"></button>
+            </form>
+        </div>
+    </div>
+    <script src="./script.js" defer></script>
 </body>
 
 </html>

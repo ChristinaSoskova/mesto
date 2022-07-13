@@ -6,12 +6,13 @@
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
-    border: 1px rgba(255, 255, 255, 1) solid;
+    border: 1px solid rgba(255, 255, 255, 1);
     background-image: url(../../../images/plus.png);
+    background-size: scale-down;
+    cursor: pointer;
 }
 
 .profile__add-button:hover {
-    cursor: pointer;
     opacity: 0.6;
 }
 

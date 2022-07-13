@@ -3,14 +3,15 @@
     height: 24px;
     margin-top: 16px;
     background-image: url(../../../images/pen.png);
+    background-size: scale-down;
     background-color: transparent;
     background-position: center;
+    cursor: pointer;
     background-repeat: no-repeat;
-    border: 1px rgba(255, 255, 255, 1) solid;
+    border: 1px solid rgba(255, 255, 255, 1);
 }
 
 .intro__edit-button:hover {
-    cursor: pointer;
     opacity: 0.5;
 }
 
