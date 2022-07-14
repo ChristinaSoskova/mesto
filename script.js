@@ -5,8 +5,8 @@ let closeBth = document.querySelector('.popup__close-button');
 let nameU = document.querySelector('.intro__title');
 let job = document.querySelector('.intro__subtitle');
 let formElement = document.querySelector('.popup__form');
-let nameInput = document.querySelector('.popup__name');
-let jobInput = document.querySelector('.popup__job');
+let nameInput = document.querySelector('.popup__point_content_name');
+let jobInput = document.querySelector('.popup__point_content_job');
 
 function open() {
     pop.classList.add('popup_opened');
