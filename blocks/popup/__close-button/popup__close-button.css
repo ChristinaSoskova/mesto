@@ -1,8 +1,8 @@
-.popup__icon {
+.popup__close-button{
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(../../../images/Close-Icon.png);
+    background-image: url(../../../images/Close.svg);
     position: absolute;
     top: -38px;
     right: -38px;
@@ -10,15 +10,15 @@
     height: 32px;
     border: 0;
     border-radius: 0;
+    cursor: pointer;
 }
 
-.popup__icon:hover {
-    cursor: pointer;
+.popup__close-button:hover {
     opacity: 0.6;
 }
 
 @media all and (max-width:535px) {
-    .popup__icon {
+    .popup__close-button {
         width: 20px;
         height: 20px;
         top: -46px;

@@ -2,8 +2,8 @@
     width: 24px;
     height: 24px;
     margin-top: 16px;
-    background-image: url(../../../images/pen.png);
-    background-size: scale-down;
+    background-image: url(../../../images/edit.svg);
+    background-size: 10px;
     background-color: transparent;
     background-position: center;
     cursor: pointer;

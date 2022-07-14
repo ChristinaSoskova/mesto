@@ -1,6 +1,6 @@
 .element__like-button {
-    background-image: url(../../../images/heart.png);
-    background-size: cover;
+    background-image: url(../../../images/like.svg);
+    background-size: 22px;
     background-color: transparent;
     background-position: center;
     background-repeat: no-repeat;
