@@ -9,6 +9,7 @@
 **Figma**
 
 * [Ссылка на макет в Figma](https://www.figma.com/file/RnjGlUaQO4puh1TGHPncpw/JavaScript.-Sprint-4?node-id=28212%3A269)
+* [Ссылка на макет в Figma - 2] (https://www.figma.com/file/11nPNqJ8NSj2DQfzeSXOli/JavaScript.-Sprint-5?node-id=50160%3A559)
 
 **Описание проекта**
 
