@@ -140,7 +140,6 @@ function newPlace(item) {
 initialCards.forEach(newPlace);
 
 
-
 // функция добавления новой карточки пользователем
 function addPlace(evt) {
     evt.preventDefault();
