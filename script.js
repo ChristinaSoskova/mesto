@@ -48,12 +48,6 @@ const inputPlace = document.querySelector('.popup__point_content_place');
 const inputAlt = document.querySelector('.popup__point_content_alt');
 const pictureOpen = document.querySelector('.popup__pic');
 const pictureOpenSub = document.querySelector('.popup__subtitle');
-const newData = [
-    {
-        name: inputPlace.value,
-        link: inputAlt.value
-    }
-];
 const cards = document.querySelector('.elements__container');
 
 // функция открытия попапов
@@ -92,10 +86,10 @@ function clickCard(evt) {
 
 
 // функция открытия изображений
-function openImg(item) {
-    pictureOpen.src = item.link;
-    pictureOpen.alt = item.name;
-    pictureOpenSub.textContent = item.name;
+function openImg(name,link) {
+    pictureOpen.src = link;
+    pictureOpen.alt = name;
+    pictureOpenSub.textContent = name;
     openPopup(popImg);
 }
 
@@ -122,30 +116,38 @@ function submitProfileForm(evt) {
 
 
 const formAdd = document.querySelector('.popup__form_type_add');
-const list = document.querySelector('.elements__container');
+
 const template = document.querySelector('#elements__container-template').content.children[0];
 
 
 // функция добавления картинок на страницу
-function createPlace(item) {
+function createPlace(link,name) {
     const elementPicture = template.cloneNode(true);
     const newText = elementPicture.querySelector('.element__title');
     const newPicture = elementPicture.querySelector('.element__picture');
-    newText.textContent = item.name;
-    newPicture.alt = item.name;
-    newPicture.src = item.link;
-    list.prepend(elementPicture);
+    newText.textContent = name;
+    newPicture.alt = name;
+    newPicture.src = link;
     const element = elementPicture.querySelector('.element__picture');
     element.addEventListener('click', () => {
-        openImg(item)
+        openImg(name,link);
     })
+    return elementPicture;
 }
 
-    initialCards.forEach(createPlace);
+function renderCard(container, data) {
+    container.prepend(createPlace(data.link, data.name));
+}
+
+function createCardItems() {
+    initialCards.forEach((item) => renderCard(cards, item));
+}
+
+createCardItems();
 
 formAdd.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    newData.map(createPlace);
+    renderCard(cards, {name: inputPlace.value, link: inputAlt.value});
     closePopup(popAdd);
 });
 
