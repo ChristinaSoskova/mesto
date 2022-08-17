@@ -29,11 +29,10 @@ const initialCards = [
 const popEdit = document.querySelector('.popup_type_edit');
 const popAdd = document.querySelector('.popup_type_add-card');
 const popImg = document.querySelector('.popup_type_image');
-const popup = document.querySelector('.popup');
 const popupProfileOpenBth = document.querySelector('.intro__edit-button');
 const popupCardOpenBth = document.querySelector('.profile__add-button');
 const saveBthEdit = document.querySelector('.popup__save-button_type_edit');
-const saveBthAdd = document.querySelector('.popup__save-button_type_add')
+const saveBthAdd = document.querySelector('.popup__save-button_type_add');
 const popupCloseBthEdit = document.querySelector('.popup__close-button_type_edit');
 const popupCloseBthAdd = document.querySelector('.popup__close-button_type_add');
 const popupCloseBthImg = document.querySelector('.popup__close-button_type_img');
@@ -49,6 +48,9 @@ const inputAlt = document.querySelector('.popup__point_content_alt');
 const pictureOpen = document.querySelector('.popup__pic');
 const pictureOpenSub = document.querySelector('.popup__subtitle');
 const cards = document.querySelector('.elements__container');
+const formAdd = document.querySelector('.popup__form_type_add');
+const body = document.querySelector('.root');
+
 
 // функция открытия попапов
 function openPopup(modal) {
@@ -86,7 +88,7 @@ function clickCard(evt) {
 
 
 // функция открытия изображений
-function openImg(name,link) {
+function openImg(name, link) {
     pictureOpen.src = link;
     pictureOpen.alt = name;
     pictureOpenSub.textContent = name;
@@ -103,6 +105,7 @@ function openEdit(nameU, job) {
 // функция открытия окна добавления карточки
 function openAdd() {
     formAdd.reset();
+    saveBthAdd.setAttribute('disabled', 'disabled');
     openPopup(popAdd);
 }
 
@@ -115,13 +118,11 @@ function submitProfileForm(evt) {
 }
 
 
-const formAdd = document.querySelector('.popup__form_type_add');
-
 const template = document.querySelector('#elements__container-template').content.children[0];
 
 
 // функция добавления картинок на страницу
-function createPlace(link,name) {
+function createPlace(link, name) {
     const elementPicture = template.cloneNode(true);
     const newText = elementPicture.querySelector('.element__title');
     const newPicture = elementPicture.querySelector('.element__picture');
@@ -130,7 +131,7 @@ function createPlace(link,name) {
     newPicture.src = link;
     const element = elementPicture.querySelector('.element__picture');
     element.addEventListener('click', () => {
-        openImg(name,link);
+        openImg(name, link);
     })
     return elementPicture;
 }
@@ -147,9 +148,11 @@ createCardItems();
 
 formAdd.addEventListener('submit', function (evt) {
     evt.preventDefault();
-    renderCard(cards, {name: inputPlace.value, link: inputAlt.value});
+    saveBthAdd.setAttribute('disabled', 'disabled');
+    renderCard(cards, { name: inputPlace.value, link: inputAlt.value });
     closePopup(popAdd);
 });
+
 
 cards.addEventListener('click', clickCard);
 formProfile.addEventListener('submit', submitProfileForm);
@@ -158,3 +161,32 @@ popupCloseBthAdd.addEventListener('click', () => closePopup(popAdd));
 popupCloseBthImg.addEventListener('click', () => closePopup(popImg));
 popupProfileOpenBth.addEventListener('click', () => openEdit(nameU, job));
 popupCardOpenBth.addEventListener('click', () => openAdd());
+
+
+body.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === 27) {
+        evt.preventDefault();
+        closePopup(popEdit);
+        closePopup(popAdd);
+        closePopup(popImg);
+      }
+    });
+    
+
+popAdd.addEventListener('click', (evt) => { 
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__clospopup__close-button')) {
+        closePopup(popAdd);
+    }
+  });
+
+  popEdit.addEventListener('click', (evt) => { 
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__clospopup__close-button')) {
+        closePopup(popEdit);
+    }
+  });
+
+  popImg.addEventListener('click', (evt) => { 
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__clospopup__close-button')) {
+        closePopup(popImg);
+    }
+  });
