@@ -1,10 +1,3 @@
-const validationObjects = {
-    formSelector: '.popup__form',
-    inputSelector: '.popup__point',
-    submitButtonSelector: '.popup__save-button',
-    inputErrorClass: 'popup__point_invalid',
-  }; 
-
 
 const toggleFormSubmit = (elementSubmit, isActive = false) => {
     if (isActive) {
@@ -50,12 +43,18 @@ const setEventListener = (formElement, obj) => {
     })
 }
 
+function openPlace() {
+        saveBthAdd.setAttribute('disabled', 'disabled'); 
+}
+
 const enableValidation = (obj) => {
+    
     const forms = document.querySelectorAll(obj.formSelector);
     [...forms].forEach(form => {
         setEventListener(form, obj);
     })
 };
+openPlace();
 
 enableValidation(validationObjects); 
 

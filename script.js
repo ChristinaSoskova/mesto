@@ -1,30 +1,4 @@
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
 const popEdit = document.querySelector('.popup_type_edit');
 const popAdd = document.querySelector('.popup_type_add-card');
@@ -52,38 +26,34 @@ const formAdd = document.querySelector('.popup__form_type_add');
 const body = document.querySelector('.root');
 
 
+function closeByEsc (evt) {
+    if (evt.keyCode === 27) {
+        evt.preventDefault();
+        body.removeEventListener('keydown', closeByEsc);
+    }
+}
+
 // функция открытия попапов
 function openPopup(modal) {
     modal.classList.add('popup_opened');
+    body.addEventListener('keydown', closeByEsc);
 }
 
 // функция закрытия попапов
-function closePopup(popup) {
-    popup.classList.remove('popup_opened');
+function closePopup(modal) {
+    modal.classList.remove('popup_opened');
 }
 
 // функция удаления карточек
 function removeCard(evt) {
     const deleteBth = evt.target;
-    console.log(deleteBth);
-    if (deleteBth.classList.contains('element__delete-button')) {
-        deleteBth.closest('.element').remove('li');
-    }
+    deleteBth.closest('.element').remove('li');
 }
+
 // функция постановки лайков 
 function likeCard(evt) {
     const likeBth = evt.target;
-    console.log(likeBth);
-    if (likeBth.classList.contains('element__like-button')) {
-        likeBth.classList.toggle('element__like-button_type_click');
-    }
-}
-
-
-// функция реагирования на клики по root
-function clickCard(evt) {
-    removeCard(evt);
-    likeCard(evt);
+    likeBth.classList.toggle('element__like-button_type_click');
 }
 
 
@@ -105,7 +75,6 @@ function openEdit(nameU, job) {
 // функция открытия окна добавления карточки
 function openAdd() {
     formAdd.reset();
-    saveBthAdd.setAttribute('disabled', 'disabled');
     openPopup(popAdd);
 }
 
@@ -126,6 +95,10 @@ function createPlace(link, name) {
     const elementPicture = template.cloneNode(true);
     const newText = elementPicture.querySelector('.element__title');
     const newPicture = elementPicture.querySelector('.element__picture');
+    const likeBth = elementPicture.querySelector('.element__like-button');
+    const deleteBth = elementPicture.querySelector('.element__delete-button');
+    likeBth.addEventListener('click', likeCard);
+    deleteBth.addEventListener('click', removeCard);
     newText.textContent = name;
     newPicture.alt = name;
     newPicture.src = link;
@@ -134,6 +107,7 @@ function createPlace(link, name) {
         openImg(name, link);
     })
     return elementPicture;
+
 }
 
 function renderCard(container, data) {
@@ -154,7 +128,6 @@ formAdd.addEventListener('submit', function (evt) {
 });
 
 
-cards.addEventListener('click', clickCard);
 formProfile.addEventListener('submit', submitProfileForm);
 popupCloseBthEdit.addEventListener('click', () => closePopup(popEdit));
 popupCloseBthAdd.addEventListener('click', () => closePopup(popAdd));
@@ -169,24 +142,24 @@ body.addEventListener('keydown', function (evt) {
         closePopup(popEdit);
         closePopup(popAdd);
         closePopup(popImg);
-      }
-    });
-    
+    }
+});
 
-popAdd.addEventListener('click', (evt) => { 
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__clospopup__close-button')) {
+
+popAdd.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
         closePopup(popAdd);
     }
-  });
+});
 
-  popEdit.addEventListener('click', (evt) => { 
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__clospopup__close-button')) {
+popEdit.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
         closePopup(popEdit);
     }
-  });
+});
 
-  popImg.addEventListener('click', (evt) => { 
-    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__clospopup__close-button')) {
+popImg.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
         closePopup(popImg);
     }
-  });
+});
