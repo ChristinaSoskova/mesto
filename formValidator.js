@@ -1,5 +1,11 @@
+export class formValidator {
+   
+    constructor(obj, form){
+        this._form = form;
+        this._obj = obj;
+    }
 
-const toggleFormSubmit = (elementSubmit, isActive = false) => {
+_toggleFormSubmit = (elementSubmit, isActive = false) => {
     if (isActive) {
         elementSubmit.removeAttribute('disabled');
     } else {
@@ -7,54 +13,46 @@ const toggleFormSubmit = (elementSubmit, isActive = false) => {
     }
 };
 
-const showError = (elementError, inputElement, obj) => {
+_showError = (elementError, inputElement, obj) => {
     inputElement.classList.add(obj.inputErrorClass);
     elementError.textContent = inputElement.validationMessage;
-
 }
-const hideError = (elementError, inputElement, obj) => {
+
+_hideError = (elementError, inputElement, obj) => {
     inputElement.classList.remove(obj.inputErrorClass);
     elementError.textContent = inputElement.validationMessage;
 }
 
 
-const checkInputValidity = (inputElement, formElement, obj) => {
+_checkInputValidity = (inputElement, formElement, obj) => {
     const elementError = formElement.querySelector(`.${inputElement.id}-error`);
     const inputIsValid = inputElement.validity.valid;
     if (!inputIsValid) {
-        showError(elementError,inputElement, obj);
+        this._showError(elementError,inputElement, obj);
     } else {
-        hideError(elementError,inputElement, obj);
+        this._hideError(elementError,inputElement, obj);
     }
 }
 
-const setEventListener = (formElement, obj) => {
+_openPlace() {
+    const saveBthAdd = document.querySelector('.popup__save-button_type_add');
+    saveBthAdd.setAttribute('disabled', 'disabled'); 
+}
+
+_setEventListener = (formElement, obj) => {
     const inputList = formElement.querySelectorAll(obj.inputSelector);
     const button = formElement.querySelector(obj.submitButtonSelector);
     formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
+    
     });
 
     [...inputList].forEach(input => {
         input.addEventListener('input', () => {
-            checkInputValidity(input, formElement, obj);
-            toggleFormSubmit(button, formElement.checkValidity(), obj);
+            this._checkInputValidity(input, formElement, obj);
+            this._toggleFormSubmit(button, formElement.checkValidity(), obj);
         })
     })
 }
 
-function openPlace() {
-        saveBthAdd.setAttribute('disabled', 'disabled'); 
 }
-
-const enableValidation = (obj) => {
-    
-    const forms = document.querySelectorAll(obj.formSelector);
-    [...forms].forEach(form => {
-        setEventListener(form, obj);
-    })
-};
-openPlace();
-
-enableValidation(validationObjects); 
-
