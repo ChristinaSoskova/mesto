@@ -1,7 +1,7 @@
 import { Card } from "./card.js";
 import { initialCards } from "./data.js";
 import { validationObjects } from "./data.js";
-import { formValidator } from "./FormValidator.js";
+import { formValidator } from "./formValidator.js";
 
 const popEdit = document.querySelector('.popup_type_edit');
 const popAdd = document.querySelector('.popup_type_add-card');
