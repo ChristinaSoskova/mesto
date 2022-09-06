@@ -29,7 +29,7 @@ export class Card {
         const likeBth = this._element.querySelector('.element__like-button');
         const deleteBth = this._element.querySelector('.element__delete-button');
         likeBth.addEventListener('click', this._likeCard);
-        deleteBth.addEventListener('click', () =>  this._element.remove());
+        deleteBth.addEventListener('click', () => this._element.remove());
 
         return this._element;
     }

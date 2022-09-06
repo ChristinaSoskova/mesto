@@ -34,16 +34,13 @@ validAdd.enableValidation();
 validProfile.enableValidation();
 
 
-
-
-
 function closeByEsc(evt) {
     if (evt.key === ESC_CODE) {
         evt.preventDefault();
-      const openedPopup = document.querySelector('.popup_opened');
-      closePopup(openedPopup); 
+        const openedPopup = document.querySelector('.popup_opened');
+        closePopup(openedPopup);
     }
-} 
+}
 
 // функция открытия попапов
 function openPopup(modal) {
@@ -70,7 +67,7 @@ function openAdd() {
     openPopup(popAdd);
 }
 
-function openImg(name, link){
+function openImg(name, link) {
     openPicture.src = link;
     openPicture.alt = name;
     openSubtitle.textContent = name;
@@ -85,20 +82,20 @@ function submitProfileForm(evt) {
     closePopup(popEdit);
 }
 
-function addCard(obj){
+function addCard(obj) {
     const template = document.querySelector('#elements__container-template');
     const card = new Card(obj, template);
     const cardElement = card.generateCard();
     cardsConteiner.prepend(cardElement);
     const cardPicture = cardElement.querySelector('.element__picture');
     cardPicture.addEventListener('click', () => {
-        openImg(obj.name,obj.link);
+        openImg(obj.name, obj.link);
     })
 }
 
-    initialCards.forEach((item) => {
-        addCard(item);
-    });
+initialCards.forEach((item) => {
+    addCard(item);
+});
 
 formAdd.addEventListener('submit', function (evt) {
     evt.preventDefault();
@@ -109,14 +106,14 @@ formAdd.addEventListener('submit', function (evt) {
 
 
 formProfile.addEventListener('submit', submitProfileForm);
-popupCloseBthEdit.addEventListener('click',  closePopup(popEdit));
+popupCloseBthEdit.addEventListener('click', closePopup(popEdit));
 popupCloseBthAdd.addEventListener('click', closePopup(popAdd));
 popupCloseBthImg.addEventListener('click', closePopup(popImg));
 popupProfileOpenBth.addEventListener('click', () => openEdit(nameU, job));
 popupCardOpenBth.addEventListener('click', () => openAdd());
 
 
-function closeOverlay (evt) {
+function closeOverlay(evt) {
     if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')) {
         const activePopup = document.querySelector('.popup_opened');
         closePopup(activePopup);
@@ -124,5 +121,5 @@ function closeOverlay (evt) {
 }
 
 popEdit.addEventListener('click', closeOverlay);
-popImg.addEventListener('click',closeOverlay);
+popImg.addEventListener('click', closeOverlay);
 popAdd.addEventListener('click', closeOverlay);
