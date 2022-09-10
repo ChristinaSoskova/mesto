@@ -25,12 +25,14 @@ const openPicture = document.querySelector('.popup__pic');
 const openSubtitle = document.querySelector('.popup__subtitle');
 const ESC_CODE = "Escape";
 const cardsConteiner = document.querySelector('.elements__container');
+const template = document.querySelector('#elements__container-template');
 
 
 const validProfile = new formValidator(validationObjects, formProfile);
 const validAdd = new formValidator(validationObjects, formAdd);
 
 validAdd.enableValidation();
+validAdd.toggleFormSubmit(false);
 validProfile.enableValidation();
 
 
@@ -61,11 +63,13 @@ function openEdit(nameU, job) {
     openPopup(popEdit);
 }
 
+
 // функция открытия окна добавления карточки
 function openAdd() {
     formAdd.reset();
     openPopup(popAdd);
 }
+
 
 function openImg(name, link) {
     openPicture.src = link;
@@ -83,14 +87,9 @@ function submitProfileForm(evt) {
 }
 
 function addCard(obj) {
-    const template = document.querySelector('#elements__container-template');
-    const card = new Card(obj, template);
+    const card = new Card(obj, template, openImg);
     const cardElement = card.generateCard();
     cardsConteiner.prepend(cardElement);
-    const cardPicture = cardElement.querySelector('.element__picture');
-    cardPicture.addEventListener('click', () => {
-        openImg(obj.name, obj.link);
-    })
 }
 
 initialCards.forEach((item) => {

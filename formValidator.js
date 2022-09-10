@@ -5,10 +5,9 @@ export class formValidator {
         this._obj = obj;
         this._inputList = form.querySelectorAll(obj.inputSelector);
         this._submitButton = form.querySelector(obj.submitButtonSelector);
-
     }
 
-    _toggleFormSubmit = (submitButton, isActive = false) => {
+    toggleFormSubmit = (isActive = false) => {
         if (isActive) {
             this._submitButton.removeAttribute('disabled');
         } else {
@@ -16,18 +15,18 @@ export class formValidator {
         }
     };
 
-    _showError = (elementError, inputElement, obj) => {
+    _showError = (elementError, inputElement) => {
         inputElement.classList.add(this._obj.inputErrorClass);
         elementError.textContent = inputElement.validationMessage;
     }
 
-    _hideError = (elementError, inputElement, obj) => {
+    _hideError = (elementError, inputElement) => {
         inputElement.classList.remove(this._obj.inputErrorClass);
         elementError.textContent = inputElement.validationMessage;
     }
 
 
-    _checkInputValidity = (inputElement, form, obj) => {
+    _checkInputValidity = (inputElement, obj) => {
         const elementError = this._form.querySelector(`.${inputElement.id}-error`);
         const inputIsValid = inputElement.validity.valid;
         if (!inputIsValid) {
@@ -37,10 +36,6 @@ export class formValidator {
         }
     }
 
-    _openPlace() {
-        const saveBthAdd = document.querySelector('.popup__save-button_type_add');
-        saveBthAdd.setAttribute('disabled', 'disabled');
-    }
 
     _setEventListener = (formElement, obj) => {
         this._form.addEventListener('submit', (evt) => {
@@ -50,7 +45,7 @@ export class formValidator {
         [... this._inputList].forEach(input => {
             input.addEventListener('input', () => {
                 this._checkInputValidity(input, formElement, obj);
-                this._toggleFormSubmit(this._submitButton, this._form.checkValidity());
+                this.toggleFormSubmit(this._form.checkValidity());
             })
         })
     }
@@ -58,8 +53,5 @@ export class formValidator {
 
     enableValidation(obj, form) {
         this._setEventListener(form, obj);
-        this._openPlace();
     };
-
-
 }

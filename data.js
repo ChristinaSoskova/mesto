@@ -5,7 +5,6 @@ export const validationObjects = {
     inputErrorClass: 'popup__point_invalid',
   }; 
 
-
   export const initialCards = [
     {
         name: 'Архыз',
