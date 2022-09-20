@@ -14,9 +14,8 @@ export class Card {
     }
 
     _getTemplate() {
-        const cardElement = this._templateSelector.content.querySelector('.element')
+        return this._templateSelector.content.querySelector('.element')
             .cloneNode(true);
-        return cardElement;
     }
 
     _likeCard(evt) {
