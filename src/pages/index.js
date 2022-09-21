@@ -1,11 +1,11 @@
-import { Card } from "./card.js";
-import { initialCards } from "./data.js";
-import { validationObjects } from "./data.js";
-import { formValidator } from "./formValidator.js";
-import { PopupWithForm } from "./popupWithForm.js";
-import { PopupWithImage } from "./popupWithImage.js";
-import { Section } from "./section.js";
-import { UserInfo } from "./userInfo.js";
+import { Card } from "../components/card.js";
+import { initialCards } from "../data.js";
+import { validationObjects } from "../data.js";
+import { FormValidator } from "../components/formValidator.js";
+import { PopupWithForm } from "../components/popupWithForm.js";
+import { PopupWithImage } from "../components/popupWithImage.js";
+import { Section } from "../components/section.js";
+import { UserInfo } from "../components/userInfo.js";
 import "./index.css";
 
 
@@ -19,11 +19,11 @@ const nameInput = document.querySelector('.popup__point_content_name');
 const jobInput = document.querySelector('.popup__point_content_job');
 const formAdd = document.querySelector('.popup__form_type_add');
 
-const validProfile = new formValidator(validationObjects, formProfile);
-const validAdd = new formValidator(validationObjects, formAdd);
-const userInfo = new UserInfo; 
-const popupAddCard = new PopupWithForm ('.popup_type_add-card', '.popup__form', '.profile__add-button', handleFormSub );
-const popupEditProfile = new PopupWithForm('.popup_type_edit', '.popup__form', '.intro__edit-button', handleEditProfile);
+const validProfile = new FormValidator(validationObjects, formProfile);
+const validAdd = new FormValidator(validationObjects, formAdd);
+const userInfo = new UserInfo('.intro__title', '.intro__subtitle'); 
+const popupAddCard = new PopupWithForm ('.popup_type_add-card', '.popup__item-error','.popup__form', '.profile__add-button',  submitAddCardForm);
+const popupEditProfile = new PopupWithForm('.popup_type_edit', '.popup__item-error', '.popup__form', '.intro__edit-button', handleEditProfile);
 const popupImg = new PopupWithImage ('.popup_type_image');
 const section = new Section({
     items: initialCards,
@@ -48,12 +48,12 @@ function handleCardClick(name,link){
     popupImg.open(name,link);
 }
 
-function addCard(obj) {
-    const card = new Card(obj, template, handleCardClick);
+function addCard(cardData) {
+    const card = new Card(cardData, template, handleCardClick);
    return card.generateCard();
 }
 
-function handleFormSub(data){
+function submitAddCardForm(data){
     section.addItem(addCard(data));
     saveBthAdd.setAttribute('disabled', 'disabled');
 }

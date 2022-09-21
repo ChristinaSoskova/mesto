@@ -29,15 +29,18 @@ export class Card {
         const cardPicture = this._element.querySelector('.element__picture');
         cardPicture.alt = this._name;
         cardPicture.src = this._link;
-        cardPicture.addEventListener('click', () => this._openImg(this._name, this._link));
-        const likeBth = this._element.querySelector('.element__like-button');
-        const deleteBth = this._element.querySelector('.element__delete-button');
-        likeBth.addEventListener('click', this._likeCard);
-        deleteBth.addEventListener('click', this.removeCard);
+       this._setEventListeners();
 
         return this._element;
 
     }
 
-
+    _setEventListeners(){
+        const cardPicture = this._element.querySelector('.element__picture');
+        cardPicture.addEventListener('click', () => this._openImg(this._name, this._link));
+        const likeBth = this._element.querySelector('.element__like-button');
+        const deleteBth = this._element.querySelector('.element__delete-button');
+        likeBth.addEventListener('click', this._likeCard);
+        deleteBth.addEventListener('click', this.removeCard);
+    }
 }

@@ -1,17 +1,17 @@
 export class UserInfo {
-    constructor() {
-        this._selectorName = document.querySelector('.intro__title');
-        this._selectorInfo = document.querySelector('.intro__subtitle');
+    constructor(selectorName, selectorInfo) {
+        this._selectorName = document.querySelector(selectorName);
+        this._selectorInfo = document.querySelector(selectorInfo);
     }
 
     getUserInfo() {
-        const object =
+        const userInfo =
         {
             userName: this._selectorName.textContent,
             userDescription: this._selectorInfo.textContent,
         }
 
-        return object;
+        return userInfo;
     }
 
     setUserInfo(data) {

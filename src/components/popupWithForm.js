@@ -1,9 +1,10 @@
 import { Popup } from "./popup.js";
 
 export class PopupWithForm extends Popup {
-    constructor(popupSelector, formSelector, openBth, submitHandler = null) {
+    constructor(popupSelector, erorr, formSelector, openBth, submitHandler = null) {
         super(popupSelector);
         this._form = this._popup.querySelector(formSelector);
+        this._erorr = this._form.querySelectorAll(erorr);
         this._submitHandler = submitHandler;
         this._openBth = openBth;
 
@@ -31,11 +32,17 @@ export class PopupWithForm extends Popup {
 
     close() {
         super.close();
+        const inputElements = this._form.querySelectorAll('.popup__point');
+        [...inputElements].forEach((input) => {
+            input.classList.remove('popup__point_invalid');
+            this._clearErorr(input);
+        });
         this._form.reset();
     }
 
-    open() {
-        super.open();
+    _clearErorr(input) {
+        const elementError = this._form.querySelector(`.${input.id}-error`);
+        elementError.textContent = '';
     }
 
 }
