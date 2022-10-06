@@ -5,6 +5,13 @@
     margin-right: 30px;
     object-fit: cover;
     object-position: center;
+    z-index: 4;
+}
+
+.profile__avatar:hover {
+    opacity: 0.2;
+    cursor: pointer;
+    z-index: 1;
 }
 
 @media all and (min-width: 320px) and (max-width: 900px) {

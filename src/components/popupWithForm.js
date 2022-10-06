@@ -1,13 +1,12 @@
 import { Popup } from "./popup.js";
 
 export class PopupWithForm extends Popup {
-    constructor(popupSelector, erorr, formSelector, openBth, submitHandler = null) {
+    constructor(popupSelector, erorr, formSelector, submitHandler = null) {
         super(popupSelector);
         this._form = this._popup.querySelector(formSelector);
         this._erorr = this._form.querySelectorAll(erorr);
         this._submitHandler = submitHandler;
-        this._openBth = openBth;
-
+        this._submitBth = this._form.querySelector('.popup__save-button');
     }
 
     _getInputValue() {
@@ -19,13 +18,22 @@ export class PopupWithForm extends Popup {
 
         return formObject;
     }
-
+    
+    renderLoading(isLoading){
+        if(isLoading) {
+            this._submitBth.textContent = 'Сохранение...'
+        }
+        else {
+            this._submitBth.textContent = 'Сохранение';
+        }
+      }
+      
+      
     setEventListeners() {
 
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this._submitHandler(this._getInputValue());
-            this.close();
         })
         super.setEventListeners();
     }
@@ -38,6 +46,7 @@ export class PopupWithForm extends Popup {
             this._clearErorr(input);
         });
         this._form.reset();
+        
     }
 
     _clearErorr(input) {
