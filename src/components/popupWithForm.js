@@ -1,33 +1,32 @@
-import { Popup } from "./popup.js";
+import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {
-    constructor(popupSelector, erorr, formSelector, submitHandler = null) {
+    constructor(popupSelector, formSelector, submitHandler = null) {
         super(popupSelector);
         this._form = this._popup.querySelector(formSelector);
-        this._erorr = this._form.querySelectorAll(erorr);
         this._submitHandler = submitHandler;
         this._submitBth = this._form.querySelector('.popup__save-button');
+        this._submitBthText = this._submitBth.textContent;
+        this._inputElements = this._form.querySelectorAll('.popup__point');
     }
 
     _getInputValue() {
         const formObject = {};
-        const inputElements = this._form.querySelectorAll('.popup__point');
-        [...inputElements].forEach((input) => {
+        [...this._inputElements].forEach((input) => {
             formObject[input.name] = input.value;
         });
 
         return formObject;
     }
     
-    renderLoading(isLoading){
+    renderLoading(isLoading, loadingText='Сохранение...'){
         if(isLoading) {
-            this._submitBth.textContent = 'Сохранение...'
+            this._submitBth.textContent = loadingText;
         }
         else {
-            this._submitBth.textContent = 'Сохранение';
+            this._submitBth.textContent = this._submitBthText;
         }
       }
-      
       
     setEventListeners() {
 
@@ -40,18 +39,8 @@ export class PopupWithForm extends Popup {
 
     close() {
         super.close();
-        const inputElements = this._form.querySelectorAll('.popup__point');
-        [...inputElements].forEach((input) => {
-            input.classList.remove('popup__point_invalid');
-            this._clearErorr(input);
-        });
         this._form.reset();
         
-    }
-
-    _clearErorr(input) {
-        const elementError = this._form.querySelector(`.${input.id}-error`);
-        elementError.textContent = '';
     }
 
 }

@@ -23,6 +23,7 @@ export class FormValidator {
     _hideError = (elementError, inputElement) => {
         inputElement.classList.remove(this._validationConfig.inputErrorClass);
         elementError.textContent = inputElement.validationMessage;
+       
     }
 
 
@@ -36,6 +37,15 @@ export class FormValidator {
         }
     }
 
+
+    clearErorr() { 
+        [...this._inputList].forEach((input) => { 
+            input.classList.remove('popup__point_invalid'); 
+        
+        const elementError = this._form.querySelector(`.${input.id}-error`); 
+        elementError.textContent = ''; 
+    })
+} 
 
     _setEventListener = () => {
         this._form.addEventListener('submit', (evt) => {
@@ -51,6 +61,6 @@ export class FormValidator {
     }
 
     enableValidation() {
-        this._setEventListener(this._form,  this._validationConfig);
+        this._setEventListener();
     };
 }

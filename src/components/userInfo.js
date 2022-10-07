@@ -20,5 +20,7 @@ export class UserInfo {
         this._selectorName.textContent = data.name;
         this._selectorInfo.textContent = data.about;
         this._selectorAvatar.src = data.avatar;
+
+        
     }
 }

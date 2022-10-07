@@ -26,9 +26,6 @@ export class Popup {
         if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button')){
             this.close();
         }
-
-        const popupCloseBth = this._popup.querySelector('.popup__close-button');
-        popupCloseBth.addEventListener('click', () => this.close);
         
     })
 }

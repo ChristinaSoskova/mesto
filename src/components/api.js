@@ -65,7 +65,7 @@ export class Api {
     changeAvatar(data) {
         return fetch(`${this._url}/users/me/avatar `, {
             method: 'PATCH',
-            headers: this._headers,
+            headers: this._headers, 
             body: JSON.stringify({ avatar: data.avatar })
         })
             .then((res) => {

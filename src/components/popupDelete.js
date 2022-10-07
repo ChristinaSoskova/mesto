@@ -1,4 +1,4 @@
-import { Popup } from "./popup.js";
+import { Popup } from "./Popup.js";
 
 export class PopupDelete extends Popup {
     constructor(popupSelector) {
@@ -6,7 +6,7 @@ export class PopupDelete extends Popup {
         this._handleClickDelete = null;
 }
 
- deleteThisCard(action){
+setDeleteHandler(action){
     this._handleClickDelete = action;
     }
 
@@ -16,7 +16,6 @@ const deleteBth = this._popup.querySelector('.popup__save-button_type_delete');
 deleteBth.addEventListener('click', (evt) => {
     evt.preventDefault();
     this._handleClickDelete();
-    super.close();
 });
 }
 
