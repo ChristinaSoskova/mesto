@@ -1,5 +1,5 @@
 export class Card {
-    constructor(data, template, openImg, userId, openPopupBth, setLikeCard) {
+    constructor(data, template, openImg, userId, openPopupBtn, setLikeCard) {
         this.cardId = data._id;
         this._data = data;
         this._name = data.name;
@@ -8,7 +8,7 @@ export class Card {
         this._userId = userId;
         this._template = template;
         this._openImg = openImg;
-        this._openPopupBth = openPopupBth;
+        this._openPopupBtn = openPopupBtn;
         this._setLikeCard = setLikeCard;
     }
 
@@ -41,10 +41,10 @@ export class Card {
         this._likeMeter.textContent = this._data.likes.length; 
 
         if (this.isLiked()) {
-            this._likeBth.classList.add('element__like-button_type_click');
+            this._likeBtn.classList.add('element__like-button_type_click');
         }
         else {
-            this._likeBth.classList.remove('element__like-button_type_click');
+            this._likeBtn.classList.remove('element__like-button_type_click');
         }
 
     }
@@ -56,8 +56,8 @@ export class Card {
         cardPicture.alt = this._name;
         cardPicture.src = this._link;
         this._likeMeter = this._element.querySelector('.element_like-meter');
-        this._likeBth = this._element.querySelector('.element__like-button');
-        this._deleteBth = this._element.querySelector('.element__delete-button');
+        this._likeBtn = this._element.querySelector('.element__like-button');
+        this._deleteBtn = this._element.querySelector('.element__delete-button');
         this._updateLike();
         this._setEventListeners();
         this._compareId();
@@ -68,14 +68,14 @@ export class Card {
 
     _compareId() {
         if (this._userId !== this._owner._id) {
-            this._deleteBth.remove();
+            this._deleteBtn.remove();
         }
     }
 
     _setEventListeners() {
         const cardPicture = this._element.querySelector('.element__picture');
         cardPicture.addEventListener('click', () => this._openImg(this._name, this._link));
-        this._likeBth.addEventListener('click', () => this._setLikeCard(this));
-        this._deleteBth.addEventListener('click', () => this._openPopupBth(this));
+        this._likeBtn.addEventListener('click', () => this._setLikeCard(this));
+        this._deleteBtn.addEventListener('click', () => this._openPopupBtn(this));
     }
 }

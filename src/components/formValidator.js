@@ -22,7 +22,7 @@ export class FormValidator {
 
     _hideError = (elementError, inputElement) => {
         inputElement.classList.remove(this._validationConfig.inputErrorClass);
-        elementError.textContent = inputElement.validationMessage;
+        elementError.textContent = ''
        
     }
 
@@ -38,14 +38,13 @@ export class FormValidator {
     }
 
 
-    clearErorr() { 
-        [...this._inputList].forEach((input) => { 
-            input.classList.remove('popup__point_invalid'); 
-        
-        const elementError = this._form.querySelector(`.${input.id}-error`); 
-        elementError.textContent = ''; 
-    })
-} 
+    clearErorr() {
+        [...this._inputList].forEach((input) => {
+          const elementError = this._form.querySelector(`.${input.id}-error`);
+          this._hideError(elementError, input);
+        });
+      }
+
 
     _setEventListener = () => {
         this._form.addEventListener('submit', (evt) => {
@@ -54,7 +53,7 @@ export class FormValidator {
 
         [... this._inputList].forEach(input => {
             input.addEventListener('input', () => {
-                this._checkInputValidity(input, this._form, this._validationConfig);
+                this._checkInputValidity(input);
                 this.toggleFormSubmit(this._form.checkValidity());
             })
         })

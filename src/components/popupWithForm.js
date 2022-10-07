@@ -5,8 +5,8 @@ export class PopupWithForm extends Popup {
         super(popupSelector);
         this._form = this._popup.querySelector(formSelector);
         this._submitHandler = submitHandler;
-        this._submitBth = this._form.querySelector('.popup__save-button');
-        this._submitBthText = this._submitBth.textContent;
+        this._submitBtn = this._form.querySelector('.popup__save-button');
+        this._submitBtnText = this._submitBtn.textContent;
         this._inputElements = this._form.querySelectorAll('.popup__point');
     }
 
@@ -21,10 +21,10 @@ export class PopupWithForm extends Popup {
     
     renderLoading(isLoading, loadingText='Сохранение...'){
         if(isLoading) {
-            this._submitBth.textContent = loadingText;
+            this._submitBtn.textContent = loadingText;
         }
         else {
-            this._submitBth.textContent = this._submitBthText;
+            this._submitBtn.textContent = this._submitBtnText;
         }
       }
       

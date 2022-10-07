@@ -13,16 +13,15 @@ import { options } from "../data.js";
 
 
 const template = document.querySelector('#elements__container-template');
-const popupProfileOpenBth = document.querySelector('.intro__edit-button');
-const popupCardOpenBth = document.querySelector('.profile__add-button');
-const saveBthAdd = document.querySelector('.popup__save-button_type_add');
+const popupProfileOpenBtn = document.querySelector('.intro__edit-button');
+const popupCardOpenBtn = document.querySelector('.profile__add-button');
 const formProfile = document.querySelector('.popup__form_type_edit');
 const nameInput = document.querySelector('.popup__point_content_name');
 const jobInput = document.querySelector('.popup__point_content_job');
 const formAdd = document.querySelector('.popup__form_type_add');
 const formAvatar = document.querySelector('.popup__form_type_avatar');
 const avatar = document.querySelector('.profile__avatar');
-let userId; 
+let userId;
 
 const api = new Api(options);
 const validProfile = new FormValidator(validationObjects, formProfile);
@@ -55,7 +54,7 @@ validProfile.enableValidation();
 
 
 
-popupProfileOpenBth.addEventListener('click', () => {
+popupProfileOpenBtn.addEventListener('click', () => {
     const currentUserInfo = userInfo.getUserInfo();
     nameInput.value = currentUserInfo.userName;
     jobInput.value = currentUserInfo.userDescription;
@@ -65,7 +64,7 @@ popupProfileOpenBth.addEventListener('click', () => {
 });
 
 
-popupCardOpenBth.addEventListener('click', () => {
+popupCardOpenBtn.addEventListener('click', () => {
     validAdd.toggleFormSubmit(false);
     validAdd.clearErorr();
     popupAddCard.open();
@@ -73,9 +72,10 @@ popupCardOpenBth.addEventListener('click', () => {
 
 avatar.addEventListener('click', () => {
     popupAvatar.open();
-    validAvatar.toggleFormSubmit(false); 
-    validAvatar.clearErorr()});
-    
+    validAvatar.toggleFormSubmit(false);
+    validAvatar.clearErorr()
+});
+
 
 function submitAvatarForm(avatarToServer) {
     popupAvatar.renderLoading(true);
@@ -101,7 +101,7 @@ function handleCardClick(name, link) {
 function addCard(cardData) {
     const card = new Card(cardData, template, handleCardClick, userId, openDeletePopup, setLikeCard);
     return card.generateCard();
-    
+
 }
 
 function openDeletePopup(card) {
@@ -159,12 +159,12 @@ function handleEditProfile(dataToServer) {
 
 
 
-  Promise.all([api.getUserInfo(), api.getInitialCards()])
-.then(([userData, cards]) => {
-    userInfo.setUserInfo(userData);
-    userId = userData._id;
-      section.rendererItems(cards);
-})
-.catch(err => {
-  console.log('Ошибка. Запрос не выполнен: ', err)
-});
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userData, cards]) => {
+        userInfo.setUserInfo(userData);
+        userId = userData._id;
+        section.rendererItems(cards);
+    })
+    .catch(err => {
+        console.log('Ошибка. Запрос не выполнен: ', err)
+    });
